@@ -149,16 +149,16 @@ function detectFromUrlHeuristic() {
   return null;
 }
 
-let menuTarget = null;
+const ALL_KEYS = ["searxng", "ddg", "google", "bing", "brave", "startpage"];
+
+function primaryTarget() {
+  return state.currentEngineKey === "searxng" ? "ddg" : "searxng";
+}
+
 function buildMenu() {
   const current = state.currentEngineKey;
-  const target = menuTarget;
-  let entries = ENGINE_ORDER.filter((k) => k !== current && k !== target);
-  if (current !== "searxng") {
-    entries = entries.filter((k) => k !== "searxng");
-    entries.unshift("searxng");
-  }
-  return entries;
+  const primary = primaryTarget();
+  return ALL_KEYS.filter((k) => k !== current && k !== primary);
 }
 
 let host;
@@ -193,7 +193,7 @@ function create() {
 }
 
 function onMain() {
-  const target = menuTarget || buildMenu()[0];
+  const target = primaryTarget();
   if (target) navigateTo(target);
 }
 
@@ -252,9 +252,8 @@ function update() {
     return;
   }
   host.style.display = "block";
-  const entries = buildMenu();
-  menuTarget = entries[0] || null;
-  root.querySelector("#sx-main-label").textContent = menuTarget ? ENGINE_LABELS[menuTarget] : "—";
+  const primary = primaryTarget();
+  root.querySelector("#sx-main-label").textContent = primary ? ENGINE_LABELS[primary] : "—";
 }
 
 let debounce;
