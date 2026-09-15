@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>SearXNG Switcher – Einstellungen</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 32px auto; max-width: 640px; color: #1c1c1c; }
+    h1 { font-size: 1.4rem; }
+    label { display: block; margin-top: 18px; font-weight: 600; }
+    input[type=url] { width: 100%; padding: 8px; margin-top: 6px; font-size: 1rem; box-sizing: border-box; }
+    .hint { color: #555; font-size: 0.9rem; margin-top: 4px; }
+    button { margin-top: 20px; padding: 8px 18px; font-size: 1rem; cursor: pointer; }
+    #status { margin-top: 14px; color: #0a7d24; }
+  </style>
+</head>
+<body>
+  <h1>SearXNG Switcher</h1>
+  <p>Diese Erweiterung blendet unten links einen Button ein, mit dem du den aktuellen Suchbegriff auf einer anderen Suchmaschine suchen kannst.</p>
+
+  <label for="searxng-url">URL deiner SearXNG-Instanz</label>
+  <input type="url" id="searxng-url" placeholder="https://search.billfish-pirate.ts.net">
+  <div class="hint">Basis-URL ohne abschließenden Schrägstrich, z.&nbsp;B. https://search.billfish-pirate.ts.net</div>
+
+  <button id="save">Speichern</button>
+  <div id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
